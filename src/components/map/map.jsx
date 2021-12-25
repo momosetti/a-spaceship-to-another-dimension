@@ -1,4 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 
 const MapGridWrapper = styled.div`
   display: grid;
@@ -12,15 +15,15 @@ const MapGridWrapper = styled.div`
   gap: 1px;
   background-color: #d8d8d8;
   .obstacle {
-    background-color: #ffc1c1;
+    background-color: #ffc4c4;
     &:hover {
-      background-color: #fca2a2;
+      background-color: #ffdbdb;
     }
   }
   & > div {
     position: relative;
     background-color: #fff;
-    transition: background-color 0.4s ease-in-out;
+    transition: background-color 0.6s ease-in-out;
     cursor: help;
     &:hover {
       background-color: #f3f3f3;
@@ -33,15 +36,18 @@ const MapGridWrapper = styled.div`
     }
   }
 `;
-export default function Map({ planetGridSchema }) {
+const Map = ({ planetGridSchema }) => {
   const { gridMatrix, m, n } = planetGridSchema;
   return (
     <MapGridWrapper rows={m} columns={n}>
       {gridMatrix.map((row, rowIndex) =>
         row.map((gridCell, gridCellIndex) => (
           <div
-            title={`Position coordinates: (${gridCellIndex},${rowIndex})`}
-            key={gridCellIndex}
+            // define each cell with a title helper
+            title={`${
+              gridCell === 2 ? "Obstacle's" : gridCell === 1 ? "Current" : ""
+            } Position Coordinates: (${gridCellIndex},${rowIndex})`}
+            key={nanoid()}
             className={`${gridCell === 2 ? "obstacle" : ""}`}
           >
             <div className="is-here">{gridCell === 1 ? "X" : " "}</div>
@@ -50,4 +56,8 @@ export default function Map({ planetGridSchema }) {
       )}
     </MapGridWrapper>
   );
-}
+};
+export default Map;
+Map.propTypes = {
+  planetGridSchema: PropTypes.object.isRequired,
+};

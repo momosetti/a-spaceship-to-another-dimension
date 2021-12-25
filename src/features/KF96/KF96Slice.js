@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   createPlanetGridSchema,
-  forwardEast,
-  forwardWest,
-  forwardNorth,
-  forwardSouth,
-} from "../../utils/helpers/createMapGrid";
+  moveForwardEast,
+  moveForwardWest,
+  moveForwardNorth,
+  moveForwardSouth,
+} from "../../utils/helpers/planetGridSchema";
 import {
   INITIAL_POSITION,
   INITIAL_MAP_DIMENSION,
+  OBSTACLES_NUMBER,
 } from "../../utils/constants/mapConstants";
 
 const initialState = {
@@ -16,10 +17,10 @@ const initialState = {
     INITIAL_MAP_DIMENSION.n,
     INITIAL_MAP_DIMENSION.m,
     INITIAL_POSITION,
-    15
+    OBSTACLES_NUMBER
   ),
   vehicleCurrentPosition: INITIAL_POSITION,
-  foundObstacle: false,
+  vehicleObstacle: { status: false, obstacleNumber: 0 },
 };
 
 export const KF96Slice = createSlice({
@@ -32,10 +33,17 @@ export const KF96Slice = createSlice({
       // remove current postition
       // y,x
       gridMatrix[y][x] = 0;
-      let step;
+      let step, obstacle;
       switch (cardinalCompassPoint) {
         case "E":
-          step = forwardEast(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardEast(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle != 0) {
+            state.vehicleObstacle.status = true;
+            state.vehicleObstacle.obstacleNumber = obstacle;
+          }
           state.vehicleCurrentPosition = {
             x: step,
             y,
@@ -44,7 +52,14 @@ export const KF96Slice = createSlice({
           gridMatrix[y][step] = 1;
           break;
         case "W":
-          step = forwardWest(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardWest(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle != 0) {
+            state.vehicleObstacle.status = true;
+            state.vehicleObstacle.obstacleNumber = obstacle;
+          }
           state.vehicleCurrentPosition = {
             x: step,
             y,
@@ -53,15 +68,30 @@ export const KF96Slice = createSlice({
           gridMatrix[y][step] = 1;
           break;
         case "N":
-          step = forwardNorth(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardNorth(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle != 0) {
+            state.vehicleObstacle.status = true;
+            state.vehicleObstacle.obstacleNumber = obstacle;
+          }
           state.vehicleCurrentPosition = {
-            ...state.vehicleCurrentPosition,
+            x,
             y: step,
+            cardinalCompassPoint,
           };
           gridMatrix[step][x] = 1;
           break;
         case "S":
-          step = forwardSouth(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardSouth(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle != 0) {
+            state.vehicleObstacle.status = true;
+            state.vehicleObstacle.obstacleNumber = obstacle;
+          }
           state.vehicleCurrentPosition = {
             x,
             y: step,
@@ -77,43 +107,80 @@ export const KF96Slice = createSlice({
       const { x, y, cardinalCompassPoint } = state.vehicleCurrentPosition;
       const { gridMatrix } = state.planet;
       // remove current postition
-      // y,x
       gridMatrix[y][x] = 0;
+      let step, obstacle;
       switch (cardinalCompassPoint) {
+        // since moving backward to the east
+        // is the same as moving forward to the west
         case "E":
-          let nes = forwardWest(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardWest(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle) {
+            state.vehicleObstacle = {
+              ...state.vehicleObstacle,
+              status: true,
+              obstacleNumber: obstacle,
+            };
+          }
           state.vehicleCurrentPosition = {
-            x: nes,
-            y,
-            cardinalCompassPoint,
+            ...state.vehicleCurrentPosition,
+            x: step,
           };
-          gridMatrix[y][nes] = 1;
+          gridMatrix[y][step] = 1;
           break;
         case "W":
-          let step = forwardEast(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardEast(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle)
+            state.vehicleObstacle = {
+              ...state.vehicleObstacle,
+              status: true,
+              obstacleNumber: obstacle,
+            };
+
           state.vehicleCurrentPosition = {
+            ...state.vehicleCurrentPosition,
             x: step,
-            y,
-            cardinalCompassPoint,
           };
           gridMatrix[y][step] = 1;
           break;
         case "N":
-          let bns = forwardSouth(state.planet, state.vehicleCurrentPosition);
-          state.vehicleCurrentPosition = {
-            x,
-            y: bns,
-            cardinalCompassPoint,
-          };
-          gridMatrix[bns][x] = 1;
-          break;
-        case "S":
-          let bss = forwardNorth(state.planet, state.vehicleCurrentPosition);
+          ({ step, obstacle } = moveForwardSouth(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle)
+            state.vehicleObstacle = {
+              ...state.vehicleObstacle,
+              status: true,
+              obstacleNumber: obstacle,
+            };
           state.vehicleCurrentPosition = {
             ...state.vehicleCurrentPosition,
-            y: bss,
+            y: step,
           };
-          gridMatrix[bss][x] = 1;
+          gridMatrix[step][x] = 1;
+          break;
+        case "S":
+          ({ step, obstacle } = moveForwardNorth(
+            state.planet,
+            state.vehicleCurrentPosition
+          ));
+          if (obstacle)
+            state.vehicleObstacle = {
+              ...state.vehicleObstacle,
+              status: true,
+              obstacleNumber: obstacle,
+            };
+          state.vehicleCurrentPosition = {
+            ...state.vehicleCurrentPosition,
+            y: step,
+          };
+          gridMatrix[step][x] = 1;
           break;
         default:
           break;
@@ -134,8 +201,10 @@ export const KF96Slice = createSlice({
           if (compassDeg === 360) compassDeg = 0;
           for (let compassProperty in compassSchema) {
             if (compassSchema[compassProperty] === compassDeg) {
-              state.vehicleCurrentPosition.cardinalCompassPoint =
-                compassProperty;
+              state.vehicleCurrentPosition = {
+                ...state.vehicleCurrentPosition,
+                cardinalCompassPoint: compassProperty,
+              };
             }
           }
           break;
@@ -153,8 +222,8 @@ export const KF96Slice = createSlice({
           break;
       }
     },
-    resetObstacleDetector: (state) => {
-      state.foundObstacle = false;
+    resetVehicleObstacleStatus: (state) => {
+      state.vehicleObstacle.status = false;
     },
   },
 });
@@ -164,7 +233,7 @@ export const {
   updateCardinalCompass,
   moveForward,
   moveBackward,
-  resetObstacleDetector,
+  resetVehicleObstacleStatus,
 } = KF96Slice.actions;
 
 export default KF96Slice.reducer;
