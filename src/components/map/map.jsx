@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import MapCell from "./mapCell";
 import { nanoid } from "nanoid";
 
 const MapGridWrapper = styled.div`
@@ -23,7 +24,7 @@ const MapGridWrapper = styled.div`
   & > div {
     position: relative;
     background-color: #fff;
-    transition: background-color 0.6s ease-in-out;
+    transition: background-color 0.4s ease-in-out;
     cursor: help;
     &:hover {
       background-color: #f3f3f3;
@@ -42,22 +43,18 @@ const Map = ({ planetGridSchema }) => {
     <MapGridWrapper rows={m} columns={n}>
       {gridMatrix.map((row, rowIndex) =>
         row.map((gridCell, gridCellIndex) => (
-          <div
-            // define each cell with a title helper
-            title={`${
-              gridCell === 2 ? "Obstacle's" : gridCell === 1 ? "Current" : ""
-            } Position Coordinates: (${gridCellIndex},${rowIndex})`}
+          <MapCell
             key={nanoid()}
-            className={`${gridCell === 2 ? "obstacle" : ""}`}
-          >
-            <div className="is-here">{gridCell === 1 ? "X" : " "}</div>
-          </div>
+            gridCellValue={gridCell}
+            gridCellIndex={gridCellIndex}
+            rowIndex={rowIndex}
+          />
         ))
       )}
     </MapGridWrapper>
   );
 };
-export default Map;
+export default React.memo(Map);
 Map.propTypes = {
   planetGridSchema: PropTypes.object.isRequired,
 };

@@ -12,7 +12,7 @@ export function moveForwardEast(planetSchema, currentPosition, obstacle = 0) {
   if (gridMatrix[y][step] === 0) {
     return { step, obstacle };
   }
-  obstacle++;
+  if (gridMatrix[y][step] === 2) obstacle++;
   return moveForwardEast(planetSchema, { x: step, y: y }, obstacle);
 }
 

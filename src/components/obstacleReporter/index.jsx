@@ -11,12 +11,24 @@ export default function ObstacleReporter({
   const dispatch = useDispatch();
   // maintain the side-effect when an obstacle found
   useEffect(() => {
-    obstacleStatus && toast.error(`${obstacleNumber} obstacle found`);
+    obstacleStatus &&
+      toast(`${obstacleNumber} obstacle detected!`, {
+        style: {
+          border: "1px solid #ff7c73",
+          padding: "12px",
+          color: "#ff9790",
+        },
+        iconTheme: {
+          primary: "#ff9790",
+          secondary: "#FFFAEE",
+        },
+        icon: "🧱",
+      });
     return () => {
       dispatch(resetterAction());
     };
   }, [obstacleStatus]);
-  return <Toaster />;
+  return <Toaster position="top-right" />;
 }
 ObstacleReporter.propTypes = {
   resetterAction: PropTypes.func.isRequired,

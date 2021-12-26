@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const PositionViewerWrapper = styled.div`
   text-align: center;
@@ -21,3 +23,6 @@ export default function PositionViewer({ position }) {
     </PositionViewerWrapper>
   );
 }
+PositionViewer.propTypes = {
+  position: PropTypes.object.isRequired,
+};
