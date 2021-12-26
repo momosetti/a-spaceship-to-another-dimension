@@ -1,5 +1,13 @@
 [Live Demo 🌍](https://a-spaceship-to-another-dimension.netlify.app/)
 
+## Data structure
+
+In order to illustrate the problem, I used 2d array (`m*n` matrix) to simulate a grid. Where every 2d array value could be `0`,`1`, or `2`.
+
+- `0` indicates an empty cell.
+- `1` indicates the current position (there's only `1` value in the grid).
+- `2` indicates an obstacle (obstacle are generated randomly at the initial global state).
+
 ## Project structure
 
 ```bash
@@ -36,7 +44,8 @@ src
 
 ## Requirements
 
-Make sure you're using LTS node version. (in my case I use Node `16.13.1` )
+Make sure you're using `16.13.1` node version. if you're using `nvm` (node version manager), fire up `nvm use` or `nvm install 16.13.1 && nvm use 16.13.1` to switch to `16.13.1`.
+Otherwise, you could edit the `engine` attribute in `package.json` file to unlock the engine version (isn't recommended!).
 
 ## How to run the app
 
