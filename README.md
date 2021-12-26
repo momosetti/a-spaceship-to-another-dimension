@@ -1,3 +1,5 @@
+[Live Demo 🌍](https://a-spaceship-to-another-dimension.netlify.app/)
+
 ## Project structure
 
 ```bash
@@ -73,14 +75,14 @@ For serving static files (after build the project):
 
 # API
 
-### Constants
+### Functions
 
 <dl>
 <dt><a href="#createPlanetGridSchema">createPlanetGridSchema</a> ⇒ <code>Object</code></dt>
 <dd><p>Create a planet grid schema.</p>
 </dd>
 <dt><a href="#createPosition">createPosition</a> ⇒ <code>Object</code></dt>
-<dd><p>Create a planet grid schema positoin.</p>
+<dd><p>Create a planet grid schema position.</p>
 </dd>
 <dt><a href="#insertPosition">insertPosition</a> ⇒ <code>void</code></dt>
 <dd><p>Insert a new position in the planet grid schema.</p>
@@ -89,21 +91,18 @@ For serving static files (after build the project):
 <dd><p>Create a random point on specific gridMatrix dimension.</p>
 </dd>
 </dl>
-
-### Functions
-
 <dl>
 <dt><a href="#moveForwardEast">moveForwardEast(planetSchema, currentPosition, obstacle)</a> ⇒ <code>Object</code></dt>
-<dd><p>Move a vehcile forward to the East.</p>
+<dd><p>Move a vehicle forward to the East.</p>
 </dd>
 <dt><a href="#moveForwardWest">moveForwardWest(planetSchema, currentPosition, obstacle)</a> ⇒ <code>Object</code></dt>
-<dd><p>Move a vehcile forward to the West.</p>
+<dd><p>Move a vehicle forward to the West.</p>
 </dd>
 <dt><a href="#moveForwardNorth">moveForwardNorth(planetSchema, currentPosition, obstacle)</a> ⇒ <code>Object</code></dt>
-<dd><p>Move a vehcile forward to the North.</p>
+<dd><p>Move a vehicle forward to the North.</p>
 </dd>
 <dt><a href="#moveForwardSouth">moveForwardSouth(planetSchema, currentPosition, obstacle)</a> ⇒ <code>Object</code></dt>
-<dd><p>Move a vehcile forward to the South.</p>
+<dd><p>Move a vehicle forward to the South.</p>
 </dd>
 </dl>
 
@@ -113,7 +112,6 @@ For serving static files (after build the project):
 
 Create a planet grid schema.
 
-**Kind**: global constant
 **Returns**: <code>Object</code> - Return a grid schema object with gridMatrix, m, and n as object keys.
 
 | Param           | Type                | Description                                                   |
@@ -127,9 +125,8 @@ Create a planet grid schema.
 
 ## createPosition ⇒ <code>Object</code>
 
-Create a planet grid schema positoin.
+Create a planet grid schema position.
 
-**Kind**: global constant
 **Returns**: <code>Object</code> - Return object with x,y, and cardinalCompassPoint keys.
 
 | Param                | Type                | Description                                 |
@@ -144,8 +141,6 @@ Create a planet grid schema positoin.
 
 Insert a new position in the planet grid schema.
 
-**Kind**: global constant
-
 | Param            | Type                | Description                                                                                          |
 | ---------------- | ------------------- | ---------------------------------------------------------------------------------------------------- |
 | planetGridSchema | <code>Object</code> | Planet grid schema object created by createPlanetGridSchema function.                                |
@@ -158,7 +153,6 @@ Insert a new position in the planet grid schema.
 
 Create a random point on specific gridMatrix dimension.
 
-**Kind**: global constant
 **Returns**: <code>Object</code> - Return new position Object.
 
 | Param            | Type                | Description                                          |
@@ -171,10 +165,9 @@ Create a random point on specific gridMatrix dimension.
 
 ## moveForwardEast(planetSchema, currentPosition, obstacle) ⇒ <code>Object</code>
 
-Move a vehcile forward to the East.
+Move a vehicle forward to the East.
 
-**Kind**: global function
-**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
+**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehicle make, obstacle stands for how many obstacle the vehicle faced.
 
 | Param           | Type                | Description                                                                                                      |
 | --------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -186,10 +179,9 @@ Move a vehcile forward to the East.
 
 ## moveForwardWest(planetSchema, currentPosition, obstacle) ⇒ <code>Object</code>
 
-Move a vehcile forward to the West.
+Move a vehicle forward to the West.
 
-**Kind**: global function
-**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
+**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehicle make, obstacle stands for how many obstacle the vehicle faced.
 
 | Param           | Type                | Description                                                                                                     |
 | --------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -201,10 +193,9 @@ Move a vehcile forward to the West.
 
 ## moveForwardNorth(planetSchema, currentPosition, obstacle) ⇒ <code>Object</code>
 
-Move a vehcile forward to the North.
+Move a vehicle forward to the North.
 
-**Kind**: global function
-**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
+**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehicle make, obstacle stands for how many obstacle the vehicle faced.
 
 | Param           | Type                | Description                                                                                                     |
 | --------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -216,10 +207,9 @@ Move a vehcile forward to the North.
 
 ## moveForwardSouth(planetSchema, currentPosition, obstacle) ⇒ <code>Object</code>
 
-Move a vehcile forward to the South.
+Move a vehicle forward to the South.
 
-**Kind**: global function
-**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
+**Returns**: <code>Object</code> - Return object with step and obstacle keys, step stands for how step should the vehicle make, obstacle stands for how many obstacle the vehicle faced.
 
 | Param           | Type                | Description                                                                                                     |
 | --------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
