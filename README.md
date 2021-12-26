@@ -84,7 +84,19 @@ For serving static files (after build the project):
 
 # API
 
+### Constans
+
+The constants value are stored in `/src/utils/constants/mapConstants.js`.
+The following constants are defined:
+| Constant | Type | Description |
+| --- | --- | --- |
+| `INITIAL_POSITION` | <code>Object</code> | Initial position `{x:0,y:0,cardinalCompassPoint:'N'}`. |
+| `INITIAL_MAP_DIMENSION` | <code>Object</code> | Initial map dimension. |
+| `OBSTACLES_NUMBER`| <code>Number</code> | Number of obstacle will be generated on the grid. |
+
 ### Functions
+
+The functions are defined in `/src/utils/helpers/planetGridSchema.js`.
 
 <dl>
 <dt><a href="#createPlanetGridSchema">createPlanetGridSchema</a> ⇒ <code>Object</code></dt>
