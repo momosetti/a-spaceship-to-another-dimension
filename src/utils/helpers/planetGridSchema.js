@@ -2,7 +2,7 @@
  * Move a vehcile forward to the East.
  * @param {Object} planetSchema Planet grid schema.
  * @param {Object} currentPosition Current vehicle position.
- * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't use it inside the function)
+ * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't invoke the function with obstacle parameter).
  * @returns {Object} Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
  */
 export function moveForwardEast(planetSchema, currentPosition, obstacle = 0) {
@@ -20,7 +20,7 @@ export function moveForwardEast(planetSchema, currentPosition, obstacle = 0) {
  * Move a vehcile forward to the West.
  * @param {Object} planetSchema Planet grid schema.
  * @param {Object} currentPosition Current vehicle position.
- * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't use it inside the function)
+ * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't invoke the function with obstacle parameter)
  * @returns {Object} Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
  */
 export function moveForwardWest(planetSchema, currentPosition, obstacle = 0) {
@@ -38,7 +38,7 @@ export function moveForwardWest(planetSchema, currentPosition, obstacle = 0) {
  * Move a vehcile forward to the North.
  * @param {Object} planetSchema Planet grid schema.
  * @param {Object} currentPosition Current vehicle position.
- * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't use it inside the function)
+ * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't invoke the function with obstacle parameter)
  * @returns {Object} Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
  */
 export function moveForwardNorth(planetSchema, currentPosition, obstacle = 0) {
@@ -56,7 +56,7 @@ export function moveForwardNorth(planetSchema, currentPosition, obstacle = 0) {
  * Move a vehcile forward to the South.
  * @param {Object} planetSchema Planet grid schema.
  * @param {Object} currentPosition Current vehicle position.
- * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't use it inside the function)
+ * @param {Number} obstacle Obstacle counter, it uses for counting the obstacles faced. (don't invoke the function with obstacle parameter)
  * @returns {Object} Return object with step and obstacle keys, step stands for how step should the vehcile make, obstacle stands for how many obstacle the vehcile faced.
  */
 export function moveForwardSouth(planetSchema, currentPosition, obstacle = 0) {
@@ -76,7 +76,7 @@ export function moveForwardSouth(planetSchema, currentPosition, obstacle = 0) {
  * @param {Number} M Grid columns number.
  * @param {Object} initialPosition inital position on the grid.
  * @param {Number} obstacleNumber Number of obstacle will be created in the grid, default is 0.
- * @returns Return a grid schema object with gridMatrix, m, and n as object keys.
+ * @returns {Object} Return a grid schema object with gridMatrix, m, and n as object keys.
  */
 export const createPlanetGridSchema = (
   N,
@@ -129,9 +129,9 @@ export const createPosition = (x, y, cardinalCompassPoint = "N") => {
 
 /**
  * Insert a new position in the planet grid schema.
- * @param {Object} planetGridSchema Planet grid schema object created by createPlanetGridSchema from createPlanetGridSchema function.
+ * @param {Object} planetGridSchema Planet grid schema object created by createPlanetGridSchema function.
  * @param {Object} position The insertde position.
- * @param {Number} positionType The type of point will be inserted. 0 for empty cell, 2 for an obstacle.
+ * @param {Number} positionType The type of point will be inserted. 0 for empty cell, 1 for current position, and 2 for an obstacle.
  * @returns {void}
  */
 export const insertPosition = (planetGridSchema, position, positionType) => {
