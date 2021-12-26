@@ -17,9 +17,20 @@ const PositionViewerWrapper = styled.div`
 export default function PositionViewer({ position }) {
   const { x, y, cardinalCompassPoint } = position;
   return (
-    <PositionViewerWrapper>
+    <PositionViewerWrapper cardinalCompassPoint={cardinalCompassPoint}>
       <h1>Current position</h1>
-      <p>{`(${x}, ${y}, ${cardinalCompassPoint})`}</p>
+      <p>
+        {`(${x}, ${y}, ${cardinalCompassPoint})`}{" "}
+        {cardinalCompassPoint === "N"
+          ? "↑"
+          : cardinalCompassPoint === "E"
+          ? "→"
+          : cardinalCompassPoint === "S"
+          ? "↓"
+          : cardinalCompassPoint === "W"
+          ? "←"
+          : ""}
+      </p>
     </PositionViewerWrapper>
   );
 }
