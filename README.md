@@ -2,11 +2,25 @@
 
 ## Data structure
 
-In order to illustrate the problem, I used 2d array (`m*n` matrix) to simulate a grid. Where every 2d array value could be `0`,`1`, or `2`.
+In order to illustrate the problem, I used zeros based 2d array (`m*n` matrix) to simulate a grid. Where every 2d array value could be `0`,`1`, or `2`.
 
 - `0` indicates an empty cell.
 - `1` indicates the current position (there's only `1` value in the grid).
 - `2` indicates an obstacle (obstacle are generated randomly at the initial global state).
+
+**Example**:
+`7*7` matrix, with the an initial position at (0,0)
+
+    [
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [0,  0,  0,  0,  0,  0,  0,  0]
+    [1,  0,  0,  0,  0,  0,  0,  0]
+    ]
 
 ## Project structure
 
