@@ -28,7 +28,7 @@ export default function ObstacleReporter({
       dispatch(resetterAction());
     };
   }, [obstacleStatus]);
-  return <Toaster position="top-right" />;
+  return <Toaster />;
 }
 ObstacleReporter.propTypes = {
   resetterAction: PropTypes.func.isRequired,
