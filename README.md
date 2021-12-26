@@ -9,17 +9,17 @@ In order to illustrate the problem, I used zeros based 2d array (`m*n` matrix) t
 - `2` indicates an obstacle (obstacle are generated randomly at the initial global state).
 
 **Example**:
-`7*7` matrix, with the an initial position at (0,0)
+`7*7` matrix, with the an initial position at (0,0).
 
     [
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [0,  0,  0,  0,  0,  0,  0,  0]
-    [1,  0,  0,  0,  0,  0,  0,  0]
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [1,  0,  0,  0,  0,  0,  0,  0],
     ]
 
 ## Project structure
